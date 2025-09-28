@@ -1,0 +1,603 @@
+/* Star rating styles */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+}
+.star {
+    font-size: 1.3em;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.star.filled {
+    color: var(--primary-color);
+}
+.rate-btn {
+    margin-left: 8px;
+    padding: 2px 10px;
+    font-size: 0.9em;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.rate-btn:hover {
+    background: var(--primary-hover);
+}
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --card-bg: #fff;
+    --header-color: #2c3e50;
+    --primary-color: #8e44ad;
+    --primary-hover: #7d3c98;
+    --secondary-color: #9b59b6;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.2);
+    --footer-color: #7f8c8d;
+}
+
+[data-theme="dark"] {
+    --background-color: #121212;
+    --text-color: #eaeaea;
+    --card-bg: #1e1e1e;
+    --header-color: #d1c4e9;
+    --primary-color: #9c27b0;
+    --primary-hover: #7b1fa2;
+    --secondary-color: #ba68c8;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+    --footer-color: #aaa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Replace the body style with this */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Add these styles for theme-specific backgrounds */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+[data-theme="dark"] body::before {
+    background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    opacity: 0.6;
+}
+
+/* Add this for an additional color overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-color);
+    z-index: -1;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.theme-switch-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+.theme-switch input {
+    display: none;
+}
+
+.slider {
+    background-color: var(--secondary-color);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    z-index: 1;
+}
+
+.fa-sun, .fa-moon {
+    color: white;
+    font-size: 14px;
+    z-index: 0;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.intro {
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin-bottom: 15px;
+    color: var(--header-color);
+    font-size: 2.5rem;
+}
+
+.intro-text {
+    max-width: 700px;
+    margin: 0 auto 20px;
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.8;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 12px 15px;
+    width: 60%;
+    max-width: 400px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+#searchButton {
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#searchButton:hover {
+    background-color: var(--primary-hover);
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.movie-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px var(--shadow-hover);
+}
+
+.movie-poster {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.movie-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.movie-year {
+    color: var(--footer-color);
+    font-size: 14px;
+}
+
+.movie-details, .watchlist {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.details-header, .watchlist-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+#backButton, #closeWatchlistButton {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover, #closeWatchlistButton:hover {
+    background-color: var(--primary-hover);
+}
+
+.watchlist-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.watchlist-btn:hover {
+    background-color: var(--primary-color);
+}
+
+.watchlist-btn.added {
+    background-color: #2ecc71;
+}
+
+.watchlist-btn.added:hover {
+    background-color: #27ae60;
+}
+
+.detail-poster {
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    margin-right: 25px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.detail-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: var(--header-color);
+}
+
+.detail-info {
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.detail-plot {
+    line-height: 1.8;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: var(--footer-color);
+    font-size: 14px;
+}
+
+.watchlist-toggle-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.watchlist-toggle-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.watchlist-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.watchlist-item {
+    position: relative;
+}
+
+.watchlist-item .remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.watchlist-item:hover .remove-btn {
+    opacity: 1;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 20px;
+    color: var(--footer-color);
+}
+
+@media (max-width: 768px) {
+    .results-grid, .watchlist-content {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .detail-poster {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .details-header, .watchlist-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        position: relative;
+    }
+
+    .theme-switch-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin-bottom: 0;
+        z-index: 2;
+    }
+
+    .intro {
+        margin-top: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-top: 0;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+/* Add this to your existing CSS root variables */
+:root {
+    /* Your existing variables */
+    --background-color: rgba(245, 245, 245, 0.65);
+    --overlay-light: rgba(245, 245, 245, 0.65);
+    --overlay-dark: rgba(18, 18, 18, 0.65);
+    /* Other variables remain the same */
+}
+
+[data-theme="dark"] {
+    /* Your existing dark theme variables */
+    --background-color: rgba(18, 18, 18, 0.65);
+    /* Other variables remain the same */
+}
+
+/* Add this to style the body with the background image */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* Add this to create an overlay that changes with theme */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--background-color);
+    
+    z-index: -1;
+}
+
+/* Update these existing elements to have background with opacity */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.movie-card, .movie-details, .watchlist {
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#searchInput {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] #searchInput {
+    background-color: rgba(30, 30, 30, 0.9);
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: var(--header-color);
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.tagline {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.intro-text {
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: var(--text-color);
+    opacity: 0.9;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+    }
+    
+    .intro-text {
+        font-size: 1rem;
+    }
+}
+/* Hide rating section in mobile view for movie cards */
+@media (max-width: 768px) {
+    .movie-card .star-rating {
+        display: none;
+    }
+}
+.category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 10px 0 25px;
+    color: var(--text-color);
+    flex-wrap: wrap;
+}
+
+.category-filter label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.category-filter input[type="radio"] {
+    accent-color: var(--primary-color);
+}
+
+.category-filter label:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px var(--shadow-hover);
+}

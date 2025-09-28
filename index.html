@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Movies - Movie Search App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="theme-switch-container">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </div>
+                </label>
+            </div>
+            <div class="intro">
+    <h1>ScreenVault</h1>
+    <p class="tagline">Your Ultimate Entertainment Database</p>
+    <p class="intro-text">Discover and explore thousands of movies, anime, and TV shows all in one place. Get detailed information about your favorite entertainment, create personal watchlists, and find new content to enjoy. Whether you're looking for blockbuster films, classic anime series, or binge-worthy TV shows, ScreenVault has you covered!</p>
+</div>
+
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Enter movie title...">
+                <button id="searchButton">Search</button>
+            </div>
+            <div class="category-filter">
+    <label><input type="radio" name="category" value="all" checked> All</label>
+    <label><input type="radio" name="category" value="movies"> Movies</label>
+    <label><input type="radio" name="category" value="tv"> TV Shows</label>
+    <label><input type="radio" name="category" value="series"> Series</label>
+    
+</div>
+        </header>
+        
+        <main>
+            <div id="results" class="results-grid"></div>
+            
+            <div id="movieDetails" class="movie-details hidden">
+                <div class="details-header">
+                    <button id="backButton">← Back to results</button>
+                    <button id="addToWatchlistButton" class="watchlist-btn"><i class="fas fa-bookmark"></i> Add to Watchlist</button>
+                </div>
+                <div id="detailsContent"></div>
+            </div>
+            
+            <div id="watchlist" class="watchlist hidden">
+                <div class="watchlist-header">
+                    <h2>My Watchlist</h2>
+                    <button id="closeWatchlistButton">Close</button>
+                </div>
+                <div id="watchlistContent" class="watchlist-content"></div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Powered by OMDb API</p>
+            <button id="watchlistButton" class="watchlist-toggle-btn">
+                <i class="fas fa-bookmark"></i> My Watchlist
+            </button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
